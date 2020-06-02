@@ -43,6 +43,7 @@ For real-time recognition mode, it is advisable to do a little preparation. You 
 
 ## Result 
 Two types of tests were made: on small part of data (first 10 signs) and on the whole dataset (64 signs). For the first type, accuracy was up to 90%.
+
 ![loss 10](pictures/loss10.png)
 ![acc 10](pictures/acc10.png)
 
