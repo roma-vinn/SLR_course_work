@@ -1,0 +1,192 @@
+<StartScreen>:
+
+    AnchorLayout:
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint: (.7, .7)
+            spacing: 40
+            padding: 40
+
+            Label:
+                text: "SLR"
+
+            BoxLayout:
+                size_hint: (1, .4)
+                spacing: 40
+                padding: 40
+                orientation: "horizontal"
+
+                Button:
+                    text: "select file"
+                    on_release: root.manager.current = "file_screen"
+
+                Button:
+                    text: "real time"
+                    on_release: root.manager.current = "real_time_screen"
+
+                Button:
+                    text: "training"
+                    on_release: root.manager.current = "training_screen"
+
+
+<TrainingScreen>:
+    input: input
+    video_train: video_train
+
+    AnchorLayout:
+
+        BoxLayout:
+            size_hint: (.95, .8)
+            orientation: "vertical"
+            spacing: 40
+            padding: 40
+
+            Label:
+                text: "training"
+                size_hint: (1, .1)
+
+            Video:
+                id: video_train
+                size_hint: (1, .6)
+
+            BoxLayout:
+                size_hint: (1, .2)
+                orientation: "horizontal"
+                padding: 40
+                spacing: 40
+
+                BoxLayout:
+                    orientation: "vertical"
+
+                    Label:
+                        text: "input the word"
+
+
+                    TextInput:
+                        id: input
+                        multiline: False
+
+                Button:
+                    text: "train"
+                    on_release: root.train()
+
+                Button:
+                    text: "back to main"
+                    on_release: root.manager.current = "start_screen"
+
+
+
+
+
+
+<FileRecognitionScreen>:
+
+    file_chooser: file_chooser
+    predict_label: predict_label
+    video_playback: video_playback
+
+    AnchorLayout:
+
+        BoxLayout:
+            size_hint: (.95, .8)
+            orientation: "vertical"
+            spacing: 40
+            padding: 40
+
+            Label:
+                text: "select file"
+                size_hint: (1, .1)
+
+            BoxLayout:
+                orientation: "horizontal"
+                size_hint: (1, .6)
+
+                FileChooserIconView:
+                    id: file_chooser
+                    path: "/Users/valentine/"
+
+                Video:
+                    id: video_playback
+
+            BoxLayout:
+                size_hint: (1, .2)
+                orientation: "horizontal"
+                padding: 40
+                spacing: 40
+
+                Button:
+                    text: "predict"
+                    on_release: root.upload()
+
+                Button:
+                    text: "back to main"
+                    on_release: root.manager.current = "start_screen"
+
+            AnchorLayout:
+                size_hint: (1, .1)
+
+                Label:
+                    id: predict_label
+
+
+<RealTimeRecognitionScreen>:
+
+    col_picker: col_picker
+    camera: camera
+    color1: color1
+    color2: color2
+    example: example
+
+    AnchorLayout:
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 30
+            size_hint: (.9, 1)
+
+            Label:
+                size_hint: (1, .1)
+                text: "show sign"
+
+            ColorPicker:
+                size_hint: (1, .4)
+                id: col_picker
+
+            Camera:
+                id: camera
+                on_touch_down: root.get_touch(args[1].pos)
+                size_hint: (None, None)
+                size: (400, 300)
+                resolution: (400, 300)
+                play: True
+
+
+            BoxLayout:
+                size_hint: (1, .2)
+                orientation: "horizontal"
+                padding: 40
+                spacing: 40
+
+                Button:
+                    id: color1
+                    text: "color 1"
+                    on_release: root.get_color1()
+
+                Button:
+                    id: color2
+                    text: "color 2"
+                    on_release: root.get_color2()
+
+                Button:
+                    text: "reset color"
+                    on_release: root.reset()
+
+                Button:
+                    text: "start"
+                    on_release: root.recognize()
+
+                Button:
+                    id: example
+                    text: "back to main"
+                    on_release: root.manager.current = "start_screen"
