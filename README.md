@@ -15,7 +15,7 @@ To simplify the problem of hand segmentation within an image, subjects wore fluo
 ![one-handed gesture](pictures/c1.png)
 ![two-handed gesture](pictures/c2.png)
 
-Data preproccesing consists of following steps:
+Data preprocessing consists of following steps:
 1. Obtain exactly 10 frames (uniformly distributed) from each video.
 2. Apply masks that remove background and make it black-and-white. 
 3. Combine all 10 frames into 1 training sample.
